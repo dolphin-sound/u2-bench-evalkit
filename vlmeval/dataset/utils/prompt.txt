@@ -1,0 +1,205 @@
+数据集prompt汇总
+1. 分类数据集
+
+10
+10：'FetusOrientation': ['hdvb', 'hdvf', 'huvb', 'huvf'],
+You are a radiologist analyzing a fetal ultrasound image.
+Your task is to determine the fetal presentation and orientation based on the provided ultrasound image. Specifically, identify whether the fetal head is down(hd) or up(hu). Additionally, determine if the fetal back is primarily oriented towards the ultrasound probe  (vb) or towards the ultrasound probe (vf). Choose the single best option from the options below that accurately combines these findings.
+options: 'hdvb', 'hdvf', 'huvb', 'huvf'
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+18
+18：'view': ['2CH', '4CH']
+You are a radiologist or cardiologist specializing in echocardiography, analyzing an apical view ultrasound image of the human heart.
+Your task is to accurately identify the specific apical view presented in the provided echocardiogram image. Carefully examine the cardiac structures visible. Determine if the image displays primarily the left ventricle and left atrium only (indicative of a 2-Chamber view, 2CH), or if it clearly shows all four chambers: the left ventricle, right ventricle, left atrium, and right atrium (indicative of a 4-Chamber view, 4CH). Choose the single best option from the list below that correctly identifies the view.
+options: 2CH, 4CH
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+28
+28：'Kellgren-Lawrence (KL) Grade': ['Mild OA', 'Moderate OA', 'No OA', 'Questionable OA', 'Severe OA', 'Total joint replacement']
+You are a radiologist analyzing an ultrasound image of left/right knee. (这个会根据图片不同改变)
+to assess the severity of osteoarthritis (OA) using the established Kellgren-Lawrence (KL) grading system.
+Kellgren-Lawrence (KL) Grade Mapping to Options:
+•	'No OA': Corresponds to KL Grade 0 (No radiographic features of OA).
+•	'Questionable OA': Corresponds to KL Grade 1 (Doubtful JSN and possible minute osteophytes).
+•	'Mild OA': Corresponds to KL Grade 2 (Definite osteophytes and possible JSN).
+•	'Moderate OA': Corresponds to KL Grade 3 (Moderate multiple osteophytes, definite JSN, some sclerosis, possible deformity).
+•	'Severe OA': Corresponds to KL Grade 4 (Large osteophytes, marked JSN, severe sclerosis, definite deformity).
+•	'Total joint replacement': Indicates the presence of knee arthroplasty components (prosthesis), which replaces the native joint structures evaluated by the KL scale.
+Choose the single best option from the following list that accurately describes the image.
+options: 'Mild OA', 'Moderate OA', 'No OA', 'Questionable OA', 'Severe OA', 'Total joint replacement'
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+40
+40：'BIRADS': ['2', '3', '4A', '4B', '4C', '5']
+You are a radiologist analyzing a breast ultrasound image.
+Your task is to synthesize the sonographic characteristics of any identified lesions (or lack thereof) into a final ACR BI-RADS (Breast Imaging Reporting and Data System) assessment category. 
+BI-RADS Ultrasound Assessment Category Definitions:
+•	'2' (Benign): Findings are definitively benign (e.g., simple cysts, intramammary lymph nodes, stable surgical implants/changes). 0% likelihood of malignancy. Requires routine screening follow-up.
+•	'3' (Probably Benign): Findings have characteristic benign features but are not definitively benign (e.g., presumed fibroadenoma, complicated cyst). Very low likelihood of malignancy (<2%). Short-interval (e.g., 6-month) follow-up is typically recommended.
+•	'4A' (Low Suspicion for Malignancy): Findings warrant biopsy but have a low probability of malignancy (>2% to ≤10%).
+•	'4B' (Moderate Suspicion for Malignancy): Findings warrant biopsy with an intermediate probability of malignancy (>10% to ≤50%).
+•	'4C' (High Suspicion for Malignancy): Findings warrant biopsy with a high probability of malignancy (>50% to <95%), without the classic features of Category 5.
+•	'5' (Highly Suggestive of Malignancy): Findings have classic malignant features (e.g., irregular spiculated mass). Very high probability of malignancy (≥95%). Biopsy is required, and definitive action should be taken regardless of pathology results if discordant.
+ Choose the single most appropriate BI-RADS assessment category from the options below.
+options:  ['2', '3', '4A', '4B', '4C', '5']
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+50
+50：'is_optimal_or_suboptimal': ['none', 'optimal', 'suboptimal']
+You are a radiologist analyzing an ultrasound image of fetal abdomen.
+Your task is to determine if the presented cross-sectional view of the fetal abdomen is technically adequate for performing an accurate Abdominal Circumference (AC) measurement according to standard obstetric guidelines. Identify the specific anatomical plane shown for the fetal abdomen. Determine if this plane meets the criteria for an optimal AC measurement (correct landmarks visible, proper transverse orientation) or if it is suboptimal (incorrect plane, missing landmarks, oblique/foreshortened view, presence of interfering structures like kidneys). Choose the single best option describing the plane's suitability for AC measurement.
+options: 'none', 'optimal', 'suboptimal'
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+benign/malignant类prompt：
+21 & 23 & 66 breast：
+21:  'tumor': ['benign', 'malignant'] 
+23:  'malignant breast cancer': ['normal', 'benign', 'malignant']  
+66: 'breast cancer': ['benign', 'malignant'] 
+You are a radiologist analyzing a breast ultrasound image.
+Your task is carefully examine the provided breast ultrasound image, evaluate any identified lesions or abnormalities based on key sonographic characteristics (including shape, orientation, margin, echo pattern, posterior acoustic features, and associated features), synthesize these features to form an overall impression about the likelihood of malignancy, and then choose the single best option from the following list that accurately summarizes this assessment.
+options: (normal), benign, malignant
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+32 & 70 thyroid:
+32: 'diagnosis': ['benign', 'malignant']  
+70: 'thyroid': ['Benign', 'Malignant', 'normal thyroid'] 
+选项全部处理成小写
+You are a radiologist specializing in head and neck or endocrine imaging, analyzing an ultrasound image of the thyroid gland.
+Your task is to carefully examine the provided thyroid ultrasound image, evaluate the overall thyroid gland parenchyma (echogenicity, texture, vascularity), identify any focal nodules, assess the specific sonographic features of any nodules found (including composition, echogenicity, shape, margin, and echogenic foci), synthesize these findings to determine if the gland appears normal, contains benign-appearing findings, or contains findings suspicious for malignancy, and then choose the single best option from the following list that accurately summarizes this assessment.
+options: (normal thyroid), benign, malignant
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+25 skin:
+25: 'tumor': ['benign', 'malignant'] 
+You are a radiologist analyzing an ultrasound image of skin.
+Your task is to carefully examine the provided skin ultrasound image, evaluate the identified lesion or abnormality based on key sonographic characteristics (including its location within skin layers, echogenicity, internal echo texture, shape, margins, size/depth, posterior acoustic phenomena, and vascularity assessed with Doppler), synthesize these features to form an overall impression regarding the likelihood of malignancy, and then choose the single best option from the following list that summarizes this assessment.
+options: benign, malignant
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+42 pancreas:
+42: 'label': ['non-pancreas cancer', 'pancreas cancer']  
+You are a radiologist analyzing an ultrasound image of the pancreas.
+Your task is to carefully examine the provided ultrasound image of the pancreas, evaluate the gland's echotexture, size, margins, and the pancreatic duct diameter, identify any focal lesions or masses (noting their echogenicity, margins, size, and vascularity if Doppler is available), assess for associated findings such as ductal dilation (including potential "double duct" sign), vascular involvement (encasement/thrombosis), regional lymphadenopathy, or fluid collections, synthesize these findings to determine if there is evidence suspicious for primary pancreatic cancer versus other findings, and then choose the single best option from the following list that summarizes this assessment.
+options: non-pancreas cancer, pancreas cancer
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+74 & 75 (缺少数据集原链接，暂时无法确定准确定义，待修改）
+74is normal: 'is_normal': ['Appears abnormal', 'Appears normal'], 
+74is visible: 'is_visible': ['Not-visible', 'Visible']
+75: 'is_normal': ['infected', 'noninfected']  PCOS
+选项全部处理成小写
+You are a radiologist analyzing a PCOS ultrasound image.
+Your task is to diagnose whether the PCOS is normal/visible, and choose the single best option from the following list that accurately describes the image.
+options: {options_prompt}\n
+Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+44：
+44: 'SeverityScore': [0, 1, 2, 3]
+You are a radiologist or clinician skilled in performing and interpreting Lung Ultrasound (LUS), specifically analyzing an ultrasound image of the lung pleura and parenchyma.
+Your task is to 
+carefully examine the provided lung ultrasound image, focusing on the appearance of the pleural line and the underlying lung parenchyma, identify the presence and characteristics of A-lines, B-lines (number, coalescence), and any consolidations according to the defined severity scoring criteria below, and then choose the single best integer score (0, 1, 2, or 3) from the following list that accurately reflects the observed findings.
+LUS Severity Score Criteria:
+*   0: Normal lung pattern. Characterized by a continuous, regular, thin pleural line with horizontal reverberation artifacts (A-lines) below it. Sliding lung sign is typically present.
+*   1: Mild interstitial syndrome. Characterized by an indented or slightly irregular pleural line. Scattered, well-defined vertical artifacts (B-lines) are visible (typically ≥3 B-lines per intercostal space but not coalescent).
+*   2: Moderate interstitial syndrome or early consolidation. Characterized by a broken or significantly irregular pleural line. Multiple coalescent B-lines (small "white lung" areas) or small subpleural consolidations are present.
+*   3: Severe interstitial syndrome or large consolidation. Characterized by dense and largely extended confluent B-lines ("white lung" appearance occupying most or all of the screen) with or without large consolidations.
+options: 0, 1, 2, 3 
+Output format: only the single chosen integer number from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+57:
+57: 'steatosis level': [0, 1]
+You are a radiologist analyzing an ultrasound image of liver.
+Your task is to assess the level of steatosis level, and choose the single best option from the following list that accurately describes the image.
+options: 0，1
+Output format: only the single chosen integer number from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+03
+
+You are a radiologist analyzing an ultrasound image of {anatomy}.
+Your task is to identify the Cardinal Anatomical Plane depicted in the provided ultrasound image. Choose the single best option from the following list that accurately describes the image\'s plane.\n
+options: {options_prompt}\n
+'Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+37：
+37：'Cardinal Anatomical Planes': ['Axial/Transverse Plane', 'Coronal Plane', 'Sagittal Plane']
+You are a radiologist analyzing an ultrasound image of {anatomy}.
+Your task is to identify the Cardinal Anatomical Plane depicted in the provided ultrasound image. Choose the single best option from the following list that accurately describes the image\'s plane.\n
+options: {options_prompt}\n
+'Output format: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or formatting.
+
+53：
+53：'frame_label': ['None', 'OnlyFetalHead', 'OnlySymphysisPubis', 'SymphysisPubis+FetalHead']
+You are a radiologist analyzing an ultrasound image of a fetal.
+Your task is to classify the content of the provided ultrasound image frame based on the presence of specific anatomical landmarks (Fetal Head, Symphysis Pubis).\n
+Choose the single best option from the following list that accurately describes the frame\'s content:\n
+options: 'None', 'OnlyFetalHead', 'OnlySymphysisPubis', 'SymphysisPubis+FetalHead'
+Output prompt: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or other formatting.
+
+69 right/left carotid：
+'Anatomy': ['external carotid', 'left carotid', 'right carotid']
+You are a radiologist analyzing an ultrasound image of cartoid
+Your task is to ..
+Choose the single best option from the following list that accurately describes the frame\'s content:\n
+options: 'external carotid', 'left carotid', 'right carotid'
+Output prompt: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or other formatting.
+
+Anatomy
+'Anatomy': ['fetal', 'thyroid', 'heart', 'lung', 'liver', 'carotid', 'kidney', 'prostate', 'breast', 'other']
+Your task is to classify the content of the provided ultrasound image belonging to what anatomy
+Choose the single best option from the following list that accurately describes the frame\'s content:\n
+options: 'fetal', 'thyroid', 'heart', 'lung', 'liver', 'carotid', 'kidney', 'prostate', 'breast', 'other'
+Output prompt: only the exact text of the chosen option from the list above. Do not include any introductory phrases, explanations, numbering, or other formatting.
+2. detection的prompt：
+
+prompt模板：
+"You are a radiologist analyzing an ultrasound image about {anatomy}."
+Your goal is to identify the primary location of any visible lesion(s).\n"
+"Choose the single most appropriate location from the following list: upper left, upper right, center, lower left, lower right, top, bottom, left, right.\n"
+"Output format: only one or two word(s) representing the chosen location. No additional text or formatting is allowed."
+
+直接预测上下左右
+0.45~0.55 中
+上下浮动0.05
+x<0.45 y>0.55
+x<0.45 y0.45~0.55左
+字符集匹配
+
+3. report的prompt：
+
+10、11、39的prompt模板：
+You are a radiologist analyzing an ultrasound image about {anatomy_location}.\n
+Generate an informative caption for the given image.\n
+Examples:\n
+Output format: A single string, that is the image caption. Only the generated caption text. No extra words, labels, or explanations.\n
+Example1: {example1} \n
+##\nExample2: {example2} \n
+##\nExample3: {example3} \n
+
+
+44的prompt：
+"Generate an informative report for the given {anatomy} ultrasound image. Focus on organ appearance, echotexture, and any visible abnormalities. Base your report strictly on the visual evidence. "
+"Output format: Strings, that is your report."
+"Example: 'The liver morphology is full with a smooth capsule. The parenchymal echotexture is fine and diffusely increased. Visualization of the portal venous system is suboptimal. Intrahepatic and extrahepatic bile ducts are not dilated. The main portal vein diameter is within normal limits. The gallbladder is normal in size and shape. The wall is smooth and not thickened. No obvious abnormal echoes are seen within the lumen. The pancreas is normal in size and shape with homogeneous parenchymal echotexture. The pancreatic duct is not dilated. No definite space-occupying lesion is seen within the pancreas. The spleen is normal in size and shape with homogeneous parenchymal echotexture. No obvious space-occupying lesion is seen within the spleen.'"
+
+
+4. measurment的prompt：
+
+"You are a radiologist analyzing an ultrasound image about {anatomy}."
+18:
+ 'Your task is to estimate the Ejection Fraction (EF) based on the visual information in this image.\n'
+'Output format: only the single numerical EF value as a floating-point number. Do not include units (like \'mm\') or any other explanatory text.'
+
+'27':
+'Your task is to estimate the Intima-Media Thickness (IMT) based on the visual information in the provided ultrasound image.\n'
+'Output Instructions: \n'
+'1. If the IMT can be reasonably estimated, output only the single numerical value as a floating-point number.\n'
+'2. If the IMT cannot be reliably determined from the image, output only the exact string \'null\'.\n'
+'Do not include units (like \'mm\') or any other explanatory text in your response.'
+
+'31':
+'Your task is to estimate the pixelSizeMm and the headCircumferenceMm based on the visual information in the provided ultrasound image.\n'
+'Output format: a single, valid JSON object containing exactly two keys \"pixelSizeMm\" and \"headCircumferenceMm\", and the values should be a floating-point number. Do not include any other explanatory text.'
+
+'50':
+'Your task is to estimate the abdominal_circumference based on the visual information in the provided ultrasound image.\n'
+ 'Output format: only the single numerical abdominal_circumference value as a floating-point number. Do not include units (like \'mm\') or any other explanatory text.'
+
+57：
+ 'Your task is to estimate the fat value based on the visual information in the provided ultrasound image.\n'
+ 'Output format: only the single numerical value representing the estimated fat value. The value must be an integer between 0 and 85. Do not include units, percentages, or any other explanatory text.'
+
+
